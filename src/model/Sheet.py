@@ -3,9 +3,12 @@ import util.View as view
 from model.Piece import Piece
 
 class Sheet:
-    def __init__(self):
+
+    def __init__(self, pieces: list[Piece] = []):
         self.pieces = [Piece(0, 0, 0)]
         self.lastPiecePos = 0
+        for p in pieces:
+            self.append(p)
 
     def __str__(self) -> str:
         return "empty" if len(self) <=1 else str(reduce(lambda a, b: str(a) + ' | ' + str(b), self.pieces[1:]))
@@ -18,7 +21,7 @@ class Sheet:
         self.pieces.append(piece)
         return self
 
-    def draw(self, windowName, delay=100, xMult=10):
+    def draw(self, windowName, delay=100, xMult=1):
         view.reset((self.lastPiecePos + self.pieces[-1].getRightPoint()) * xMult)
         pos = 0
         totalWaste = 0

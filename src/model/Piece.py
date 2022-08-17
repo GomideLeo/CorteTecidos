@@ -38,7 +38,7 @@ class Piece:
     def getLeftPoint(self) -> float:
         return min(0, self.x3)
 
-    def getDrawArr(self, topLeftPos = 0, xMult = 10, height = 100):
+    def getDrawArr(self, topLeftPos = 0, xMult = 1, height = 100):
         """ 
         Obtem o vetor para ser usado para desenhar a peça
 
@@ -57,7 +57,7 @@ class Piece:
 
         return [pts.reshape((-1, 1, 2))]
 
-    def draw(self, windowName, xMult = 10, height = 100):
+    def draw(self, windowName, xMult = 1, height = 100):
         view.reset((self.getRightPoint() - self.getLeftPoint()) * xMult, height)
         view.addPoly(self.getDrawArr(-self.getLeftPoint(), xMult, height))
         view.show(windowName,0)

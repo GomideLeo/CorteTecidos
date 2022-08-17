@@ -2,7 +2,7 @@ from model.Piece import Piece
 from model.Sheet import Sheet
 
 filename = './examples/ex01.txt'
-sheet = Sheet()
+sheet = []
 
 with open(filename, 'r') as f: 
     nPieces =  int(f.readline())
@@ -15,4 +15,4 @@ with open(filename, 'r') as f:
 
         nPieces -= 1
 
-print(sheet.draw("window", 1000, 10))
+print(Sheet(sheet).draw("window", 0, 10))
