@@ -1,4 +1,5 @@
 from functools import reduce
+from time import sleep
 import util.View as view
 import util.permutations as permutations
 from model.Piece import Piece
@@ -55,14 +56,18 @@ class Sheet:
 
         return totalWaste
     
-    def findBestArrangement(self):
+    def findBestArrangement(self, delay=500, displayTest=True, testWinName="testing_views"):
         minComb = []
         minInt = None
         
         for arrangement in permutations.permutations(self.pieces[1:]):
+            sheet_test = Sheet(arrangement)
             waste = Sheet(arrangement).calculateWaste()
             if (minInt == None or waste <= minInt):
                 minComb = arrangement
                 minInt = waste
-
+            if displayTest:
+                sheet_test.draw(testWinName, delay, 10)
+        if displayTest:
+            view.destroyWindow(testWinName)
         return minComb

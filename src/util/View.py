@@ -22,3 +22,6 @@ def addPoly(poly):
 def show(windowName, delay = 100):
     cv2.imshow(windowName, view)
     cv2.waitKey(delay)
+
+def destroyWindow(winname):
+    cv2.destroyWindow(winname)
