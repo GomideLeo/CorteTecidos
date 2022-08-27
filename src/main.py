@@ -1,7 +1,7 @@
 from model.Piece import Piece
 from model.Sheet import Sheet
 
-filename = './examples/ex01.txt'
+filename = './examples/ex02.txt'
 sheet = []
 
 with open(filename, 'r') as f: 
@@ -15,4 +15,6 @@ with open(filename, 'r') as f:
 
         nPieces -= 1
 
-print(Sheet(sheet).draw("window", 0, 10))
+newComb = (Sheet(sheet).findBestArrangement())
+Sheet(newComb).draw("window", 0, 10)
+# print(Sheet(sheet).draw("window", 0, 10))

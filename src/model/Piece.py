@@ -13,6 +13,9 @@ class Piece:
     def __str__(self) -> str:
         return str(self.x1) + " " + str(self.x2) + " " + str(self.x3)
 
+    def __repr__(self):
+        return str(self.x1) + " " + str(self.x2) + " " + str(self.x3)
+
     def getMinDistance(self, other: Piece) -> float:
         """ 
         calcula a distância entre o ponto esquerdo superior de `self` e o de `other`

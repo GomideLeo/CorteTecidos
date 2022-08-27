@@ -1,9 +1,9 @@
 from functools import reduce
 import util.View as view
+import util.permutations as permutations
 from model.Piece import Piece
 
 class Sheet:
-
     def __init__(self, pieces: list[Piece] = []):
         self.pieces = [Piece(0, 0, 0)]
         self.lastPiecePos = 0
@@ -54,3 +54,15 @@ class Sheet:
         totalWaste += self.pieces[-1].calculateWaste(self.pieces[0])
 
         return totalWaste
+    
+    def findBestArrangement(self):
+        minComb = []
+        minInt = None
+        
+        for arrangement in permutations.permutations(self.pieces[1:]):
+            waste = Sheet(arrangement).calculateWaste()
+            if (minInt == None or waste <= minInt):
+                minComb = arrangement
+                minInt = waste
+
+        return minComb
