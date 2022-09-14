@@ -1,5 +1,6 @@
 from functools import reduce
 from time import sleep
+import cv2
 import util.View as view
 import util.permutations as permutations
 from model.Piece import Piece
@@ -68,6 +69,7 @@ class Sheet:
                 minInt = waste
             if displayTest:
                 sheet_test.draw(testWinName, delay, 10)
+                cv2.waitKey()
         if displayTest:
             view.destroyWindow(testWinName)
         return minComb
