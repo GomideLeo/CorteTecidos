@@ -1,6 +1,4 @@
 from functools import reduce
-from time import sleep
-import cv2
 import util.View as view
 import util.permutations as permutations
 from model.Piece import Piece
@@ -76,24 +74,7 @@ class Sheet:
         totalWaste += self.pieces[-1].calculateWaste(self.pieces[0])
 
         return totalWaste
-
-    def findBestArrangement(self, delay=100, displayTest=True, testWinName="testing_views"):
-        minComb = []
-        minInt = None
-
-        for arrangement in permutations.permutations(self.pieces[1:]):
-            sheet_test = Sheet(arrangement)
-            waste = Sheet(arrangement).draw(testWinName, delay, 10)
-            if (minInt == None or waste <= minInt):
-                minComb = arrangement
-                minInt = waste
-            if displayTest:
-                sheet_test.draw(testWinName, delay, 10)
-                cv2.waitKey()
-        if displayTest:
-            view.destroyWindow(testWinName)
-        return minComb
-
+    #TODO: adapt code to class heuristic Solver
     def greedyHeuristicSolve(self):
         wasteMtx = self.calculateWasteMtx()
         usedPieces = []
