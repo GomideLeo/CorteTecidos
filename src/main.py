@@ -3,6 +3,7 @@ from model.BruteForceSolver import BruteForceSolver
 from model.HeuristicSolver import HeuristicSolver
 from model.Piece import Piece
 from model.Sheet import Sheet
+import time
 
 filename = './examples/ex03.txt'
 pieces = []
@@ -21,17 +22,23 @@ with open(filename, 'r') as f:
 
 sheet_non_treated = Sheet(pieces)
 
+t0 = time.time()
 bf = BruteForceSolver(sheet_non_treated)
 sheet_bf = Sheet(bf.findSolution())
 sheet_bf.draw("window", 0, 10)
-print("bf_waste = ", sheet_bf.calculateWaste(), ", totalEval = ", bf.totalEvaluations)
+t1 = time.time()
+print("bf_waste = ", sheet_bf.calculateWaste(), ", totalEval = ", bf.totalEvaluations, ", total time of execution = ", t1 - t0)
 
+t0 = time.time()
 bb = BranchBoundSolver(sheet_non_treated)
 sheet_bb = Sheet(bb.findSolution())
 sheet_bb.draw("window", 0, 10)
-print("bb_waste = ", sheet_bb.calculateWaste(), ", totalEval = ", bb.totalEvaluations)
+t1 = time.time()
+print("bb_waste = ", sheet_bb.calculateWaste(), ", totalEval = ", bb.totalEvaluations, ", total time of execution = ", t1 - t0)
 
+t0 = time.time()
 hs = HeuristicSolver(sheet_non_treated)
 sheet_hs = Sheet(hs.findSolution())
 sheet_hs.draw("window", 0, 10)
-print("hs_waste = ", sheet_hs.calculateWaste(), ", totalEval = ", hs.totalEvaluations)
+t1 = time.time()
+print("hs_waste = ", sheet_hs.calculateWaste(), ", totalEval = ", hs.totalEvaluations, ", total time of execution = ", t1 - t0)
