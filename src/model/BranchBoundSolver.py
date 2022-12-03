@@ -26,7 +26,7 @@ class BranchBoundSolver:
         for i in range(len(toPermute)):
             choice = permuted + [toPermute[i]]
             rest = toPermute[0:i] + toPermute[i + 1:]
-            if Sheet(choice).calculateWaste() < self.bestFit:
+            if Sheet(choice).calculateWaste(ignotreFinalWaste=True) < self.bestFit:
                 self.totalEvaluations += 1
                 self.permute(rest, choice)
 

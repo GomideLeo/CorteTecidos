@@ -61,7 +61,7 @@ class Sheet:
         view.show(windowName, delay)
         return totalWaste
 
-    def calculateWaste(self):
+    def calculateWaste(self, ignotreFinalWaste=False):
         totalWaste = 0
 
         for (idx, piece) in enumerate(self.pieces):
@@ -71,10 +71,12 @@ class Sheet:
             totalWaste += self.pieces[idx-1].calculateWaste(piece)
 
         # usado para calcular a perda no final
-        totalWaste += self.pieces[-1].calculateWaste(self.pieces[0])
+        if not ignotreFinalWaste:
+            totalWaste += self.pieces[-1].calculateWaste(self.pieces[0])
 
         return totalWaste
-    #TODO: adapt code to class heuristic Solver
+    # TODO: adapt code to class heuristic Solver
+
     def greedyHeuristicSolve(self):
         wasteMtx = self.calculateWasteMtx()
         usedPieces = []
