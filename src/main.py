@@ -5,9 +5,15 @@ from model.HeuristicSolver import HeuristicSolver
 from model.Piece import Piece
 from model.Sheet import Sheet
 import time
+import argparse
 
+parser = argparse.ArgumentParser()
 
-dirname = './examples/generated'
+parser.add_argument("-f", "--folder", default='./examples/generated',
+                    type=str, help="Folder path to open files.")
+
+args = parser.parse_args()
+dirname = args.folder
 
 for filename in os.listdir(dirname):
     pieces = []
